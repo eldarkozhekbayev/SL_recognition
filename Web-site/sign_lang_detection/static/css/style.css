@@ -1,0 +1,239 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    background-color: #003366; /* Темно-синий фон для шапки */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#displayArea {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f9f9f9; /* Светло-серый фон для области отображения */
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+#wordInput {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#languageSelect {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    vertical-align: top;
+}
+
+#startButton {
+    padding: 10px 20px;
+    background-color: #28a745; /* Зеленый цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background-color: #218838; /* Темно-зеленый цвет кнопки при наведении */
+}
+
+#signImage {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border: none; /* Убрать границу вокруг изображения */
+}
+
+.letter {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 24px; /* Увеличенный размер шрифта для букв */
+}
+
+.last-letter {
+    background-color: #ffff99; /* Светло-желтый фон для последней буквы */
+}
+
+.control-panel {
+    margin-top: 20px;
+}
+
+.control-panel label,
+.control-panel select {
+    margin-right: 10px;
+}
+
+.control-panel .slider {
+    width: 200px; /* Фиксированная ширина для ползунка скорости */
+}
+.letter {
+    display: inline-block;
+    margin-right: 5px; /* Расстояние между буквами */
+    padding: 5px; /* Отступ вокруг буквы */
+    /* Другие стили для букв */
+}
+
+.last-letter {
+    background-color: #add8e6; /* Светло-голубой цвет фона для последней буквы */
+    /* Другие стили для выделения последней буквы */
+}
+.logo {
+    height: 100px; /* Или другой размер в зависимости от вашего дизайна */
+    width: auto; /* Чтобы сохранить пропорции изображения */
+    margin-right: 10px; /* Отступ справа от логотипа */
+}
+
+.navbar-brand {
+    display: flex; /* Для выравнивания логотипа и названия сайта */
+    align-items: center; /* Центрирует логотип по вертикали */
+}
+
+
+
+.main-nav {
+    background-color: #003366; /* Цвет фона для навигации */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+.mobile-nav-toggle {
+    display: none; /* По умолчанию скрыто, показывается только на мобильных устройствах */
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item {
+    margin-left: 20px; /* Отступ между пунктами меню */
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    background-color: #1a75ff; /* Цвет фона для пункта меню при наведении/фокусе */
+}
+
+
+#textToTranslate {
+    width: 50%;
+    height: 60px;/* или желаемый процент/фиксированный размер */
+    padding: 15px; /* Увеличенный отступ для большего поля ввода */
+    margin: 20px auto; /* Автоматические отступы для центрирования */
+    display: block; /* Блочное отображение для правильного центрирования */
+    background-color: #ffffe0; /* Лимонно-желтый цвет фона */
+    border: 1px solid #ccc; /* Граница */
+    border-radius: 4px; /* Скругленные углы */
+    font-size: 1.2em; /* Увеличенный размер текста */
+}
+
+/* Вы можете добавить стили для центрирования и оформления всего контейнера ввода текста */
+.input-area {
+    text-align: center; /* Центрирование содержимого */
+    /* Другие стили для оформления области ввода */
+}
+
+
+#translateButton {
+    padding: 10px 20px;
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#translateButton:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+}
+
+#resultArea {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Центрирование изображений */
+}
+
+.sign-language-image {
+    max-width: 100px; /* Размер изображения */
+    margin: 5px; /* Отступы вокруг изображения */
+    border: 1px solid #ddd; /* Граница */
+    border-radius: 4px;
+}
+
+
+.sign-letter-container {
+    display: inline-block; /* Расположить контейнеры букв в ряд */
+    text-align: center; /* Центрировать текст и изображения */
+    margin: 10px; /* Отступы вокруг каждого контейнера с буквой */
+}
+
+.sign-language-image {
+    max-width: 50px; /* Ограничиваем размер изображения */
+    height: auto; /* Сохраняем пропорции изображения */
+}
+
+.sign-language-text {
+    display: block; /* Блочное отображение для текста под изображением */
+    margin-top: 5px; /* Отступ сверху */
+}
+
+.sign-space {
+    display: inline-block;
+    width: 50px; /* Установите ширину равной ширине изображений букв */
+    background-color: red; /* Красный цвет фона для пробелов */
+    margin: 5px; /* Отступы вокруг пробела */
+}
+
+
+.instructions {
+    background-color: #f9f9f9; /* Светлый фон для выделения абзаца */
+    border-left: 5px solid #007bff; /* Акцентная линия слева */
+    padding: 20px; /* Отступы внутри блока */
+    margin: 20px 0; /* Отступ сверху и снизу блока */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Современный, чистый шрифт */
+    line-height: 1.6; /* Пространство между строками текста */
+    color: #333; /* Темно-серый цвет текста для легкости чтения */
+    max-width: 800px; /* Максимальная ширина блока, чтобы текст был читаем */
+    margin-left: auto; /* Центрирование блока по горизонтали */
+    margin-right: auto; /* Центрирование блока по горизонтали */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Слегка заметная тень для глубины */
+    border-radius: 4px; /* Скругленные углы у блока */
+}
+
+.instructions p {
+    margin-bottom: 1em; /* Отступ после каждого параграфа */
+}
+
+.instructions p:last-child {
+    margin-bottom: 0; /* Убрать отступ после последнего параграфа */
+}
+
+
+

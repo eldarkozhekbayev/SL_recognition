@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn ASL / BSL Fingerspelling</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Путь к вашему CSS-файлу -->
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <a href="{% url 'language:index' %}" class="navbar-brand">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            </a>
+
+            <div class="mobile-nav-toggle"><span></span></div>
+
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'language:index' %}" class="nav-link">Try Sign Language Player!</a></li>
+                <li class="nav-item"><a href="{% url 'language:convert_to_sign_index' %}" class="nav-link">Convert in ASL Sign Language</a></li>
+                <li class="nav-item"><a href="{% url 'language:alphabet' %}" class="nav-link">Show Alphabet</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="fingerspelling-tool">
+            <h2>Learn ASL / BSL Fingerspelling</h2>
+            <div class="input-area">
+            <input type="text" id="textToTranslate" placeholder="Enter text here">
+            <button id="translateButton">Convert in ASL Sign Language</button>
+            </div>
+
+            <div id="resultArea">
+                <!-- Результаты будут отображаться здесь -->
+            </div>
+        </section>
+        <br><br>
+
+        <article class="instructions" >
+            <p>American Sign Language (ASL) is a natural language. It is the primary sign language used by the deaf and people with hearing impairment in the USA and Canada.</p>
+            <p>American Sign Language is one of the most popular sign languages around the world. Although it contains the same alphabets as English, it is not a subset of the English language. Sentence formation or the sequence of words in a sentence is different in ASL as compared to English because of its unique grammar rules. ASL is considered to be a descendant of French Sign Language that is also influenced by Martha's Vineyard Sign Language and some other local sign languages. ASL uses the one-hand fingerspelling method for the English Alphabet.</p>
+        </article>
+    </div>
+
+    <script>
+document.getElementById('translateButton').addEventListener('click', function() {
+    const text = document.getElementById('textToTranslate').value;
+    convertTextToSignLanguage(text);
+});
+
+function convertTextToSignLanguage(text) {
+    // Предполагаем, что ваш серверный endpoint выглядит примерно так
+    fetch(`/convert_to_sign?text=${text}`)
+        .then(response => response.json())
+        .then(data => {
+            // Предполагаем, что 'data' это объект с полем 'images', которое является массивом URL изображений
+            displaySigns(data.images, text);
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function displaySigns(images, text) {
+    const resultArea = document.getElementById('resultArea');
+    resultArea.innerHTML = '';
+
+    images.forEach((imageSrc, index) => {
+        const letterContainer = document.createElement('div');
+        letterContainer.classList.add('sign-letter-container');
+
+        if (imageSrc === "space-placeholder") {
+            const spaceSpan = document.createElement('span');
+            spaceSpan.classList.add('sign-space');
+            spaceSpan.textContent = text[index]; // Текстовое содержимое будет пробелом
+            letterContainer.appendChild(spaceSpan);
+        } else if (imageSrc !== "missing-letter-placeholder") {
+            const img = document.createElement('img');
+            img.src = imageSrc;
+            img.alt = `Sign language for letter ${text[index]}`;
+            img.className = 'sign-language-image';
+
+            const letterSpan = document.createElement('span');
+            letterSpan.textContent = text[index];
+            letterSpan.classList.add('sign-language-text');
+
+            letterContainer.appendChild(img);
+            letterContainer.appendChild(letterSpan);
+        } else {
+        }
+
+        resultArea.appendChild(letterContainer);
+    });
+}
+
+
+
+    </script>
+</body>
+</html>
+

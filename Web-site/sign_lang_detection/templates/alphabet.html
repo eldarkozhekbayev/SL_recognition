@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn ASL / BSL Fingerspelling</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Путь к вашему CSS-файлу -->
+    <style>
+        /* ... Остальные стили ... */
+
+.alphabet-selector {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#alphabetLanguageSelect {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffe0; /* фоновый цвет выбран в соответствии с вашим запросом */
+}
+
+#showAlphabetButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#showAlphabetButton:hover {
+    background-color: #0056b3;
+}
+
+.alphabet-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.alphabet-letter {
+    margin: 5px;
+    text-align: center;
+    flex-basis: 60px; /* Вы можете изменить это, чтобы контролировать размер букв */
+}
+
+.alphabet-letter img {
+    width: 100%; /* Масштабируем изображения под контейнер */
+    height: auto;
+    border-radius: 4px; /* Если вы хотите скруглённые углы для изображений */
+}
+
+.alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Автоматически заполняет ряды, размер карточек адаптируется к ширине экрана */
+    gap: 10px; /* Расстояние между карточками */
+    padding: 10px;
+    background-color: #ffffe0; /* Цвет фона, который вы указали */
+}
+
+.letter-card {
+    background-color: #ffffff; /* Белый цвет фона для карточки с буквой */
+    border: 1px solid #ddd; /* Граница вокруг карточки */
+    border-radius: 4px; /* Скругление углов карточки */
+    text-align: center; /* Центрирование содержимого карточки */
+    padding: 15px; /* Отступы внутри карточки */
+}
+
+.sign-image {
+    width: 100%; /* Изображения растягиваются на всю ширину карточки */
+    height: auto; /* Высота изображений будет автоматически адаптироваться */
+    margin-bottom: 8px; /* Отступ под изображением */
+}
+
+.letter-label {
+    display: block;
+    font-size: 1.2em; /* Увеличенный размер шрифта для букв */
+    font-weight: bold; /* Жирный шрифт для букв */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <a href="{% url 'language:index' %}" class="navbar-brand">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            </a>
+
+            <div class="mobile-nav-toggle"><span></span></div>
+
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'language:index' %}" class="nav-link">Try Sign Language Player!</a></li>
+                <li class="nav-item"><a href="{% url 'language:convert_to_sign_index' %}" class="nav-link">Convert in ASL Sign Language</a></li>
+                <li class="nav-item"><a href="{% url 'language:alphabet' %}" class="nav-link">Show Alphabet</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="alphabet-selector">
+            <h2>Select a Language to View Its Alphabet</h2>
+            <form action="{% url 'language:alphabet' %}" method="get">
+                {% csrf_token %}
+                <select id="alphabetLanguageSelect" name="language_id">
+                    {% for language in languages %}
+                        <option value="{{ language.id }}">{{ language.title }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" id="showAlphabetButton">Show Alphabet</button>
+            </form>
+        </section>
+
+        <section class="alphabet-display">
+            <div id="alphabetContainer" class="alphabet-grid">
+                <!-- Алфавит для выбранного языка будет отображаться здесь -->
+                {% for letter in alphabets %}
+                    <div class="letter-card">
+                        <img src="{{ letter.photo.url }}" alt="Letter {{ letter.letter }}" class="sign-image" />
+                        <div class="letter-label">{{ letter.letter }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+

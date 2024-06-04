@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn ASL / BSL Fingerspelling</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Путь к вашему CSS-файлу -->
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <a href="{% url 'language:index' %}" class="navbar-brand">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            </a>
+
+            <div class="mobile-nav-toggle"><span></span></div>
+
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'language:index' %}" class="nav-link">Try Sign Language Player!</a></li>
+                <li class="nav-item"><a href="{% url 'language:convert_to_sign_index' %}" class="nav-link">Convert in ASL Sign Language</a></li>
+                <li class="nav-item"><a href="{% url 'language:alphabet' %}" class="nav-link">Show Alphabet</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="fingerspelling-tool">
+            <h2>Learn ASL / BSL Fingerspelling</h2>
+            <input type="text" id="wordInput"  placeholder="Enter text here" style="background-color: #ffffe0;">
+            <select id="languageSelect" style="background-color: #ffffe0;">
+                {% for language in languages %}
+                    <option value="{{language.title}}">{{language.title}}</option>
+                {% endfor %}
+            </select>
+            <button id="startButton">Start</button>
+
+            <div class="control-panel">
+                <label for="speedControl">Speed:</label>
+                <input type="range" id="speedControl" min="1" max="10" value="5">
+            </div>
+
+            <div id="displayArea">
+                <img id="signImage" src="" alt="Sign language letter" style="display:none">
+                <div id="letterDisplay" class="letter-container"></div>
+            </div>
+        </section>
+
+        <article class="instructions" >
+            <p>This WeCapable Tool takes the English text from you and plays the converted fingerspelling. Thus, it helps you in learning ASL and practicing your knowledge of the same.</p>
+            <p>You have the option of controlling the speed of playback. More learned people may want to speed up the playback and still recognize the fingerspelled words. Beginners may want to see the playback at lower speeds. You can also mirror the hand -- sometimes it helps you to practice better. You can change the size of the hand and also opt for the dark mode to reduce the screen glare.</p>
+        </article>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+
